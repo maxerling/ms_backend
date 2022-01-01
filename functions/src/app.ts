@@ -1,11 +1,12 @@
-import express = require("firebase-functions/node_modules/@types/express");
+import express from "express";
 import rootRouter from "./router";
+
 function app(...middlewares: any[]) {
   const app = express();
   for (const middleware of middlewares) {
-    app.use(middlewares);
+    app.use(middleware);
   }
-  return app.use(rootRouter)
+  return app.use(rootRouter);
 }
 
 export default app;
