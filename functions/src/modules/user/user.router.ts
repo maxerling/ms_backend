@@ -1,11 +1,12 @@
 import { Router } from "express";
+import { requireUser } from "../../middlewares/requireUser";
 import * as userController from "./user.controller";
 const userRouter = Router();
 
-userRouter.get("/", userController.getUsers);
-userRouter.get("/:id", userController.getUser);
-userRouter.post("/", userController.createUser);
-userRouter.put("/", userController.updateUser);
-userRouter.delete("/:id", userController.deleteUser);
+userRouter.get("/", requireUser, userController.getUsers);
+userRouter.get("/:id", requireUser, userController.getUser);
+userRouter.post("/", requireUser, userController.createUser);
+userRouter.put("/", requireUser, userController.updateUser);
+userRouter.delete("/:id", requireUser, userController.deleteUser);
 
 export default userRouter;
