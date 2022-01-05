@@ -7,8 +7,8 @@ export async function createUser(
   next: NextFunction
 ) {
   try {
-    const body = req.body as User;
-    const user = await userService.createUser(body);
+    const uid = req.uid;
+    const user = await userService.createUser(uid);
     res.send(user);
   } catch (error) {
     next(error);

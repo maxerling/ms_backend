@@ -1,8 +1,10 @@
-
 import { db } from "../../index";
 
 export async function createUser(user: User) {
-  await db.collection("users").doc().set(user);
+  await db
+    .collection("users")
+    .doc(user.id || "")
+    .set(user);
   return "user added";
 }
 

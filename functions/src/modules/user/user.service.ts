@@ -1,13 +1,14 @@
 import { HttpsError } from "firebase-functions/v1/https";
 import * as userRepo from "./user.repository";
-export async function createUser(user: User) {
+export async function createUser(uid: string) {
+  const user: User = { id: uid, routineId: "" };
   return userRepo.createUser(user);
 }
 export async function getUsers() {
   const usersCollection = await userRepo.getUsers();
   const userArray: User[] = [];
   usersCollection.forEach((doc) => {
-    const user = { id: doc.id, ...doc.data() } as User;
+    const user: User = { id: doc.id, ...doc.data() };
     userArray.push(user);
   });
   return userArray;

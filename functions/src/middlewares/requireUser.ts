@@ -13,8 +13,9 @@ export async function requireUser(
       next(new HttpsError("permission-denied", "No token provided"));
     }
     const token = authorization!.split(" ")[1];
-    const verifiedToken = await admin.auth().verifyIdToken(token, true);
-
+    console.log(token);
+    const verifiedToken = await admin.auth().verifyIdToken(token, false);
+    console.log("verifiedToken", verifiedToken);
     req.uid = verifiedToken.uid;
     next();
   } catch (error) {
