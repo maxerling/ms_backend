@@ -36,7 +36,7 @@ export async function createRoutine(
     const routine = req.body as Routine;
 
     await routineService.createRoutine(routine);
-    res.status(200).send();
+    res.status(200).send("routine was added");
   } catch (err) {
     next(err);
   }
