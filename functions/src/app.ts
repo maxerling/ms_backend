@@ -1,5 +1,5 @@
 import express from "express";
-import rootRouter from "./router";
+//import rootRouter from "./router";
 
 declare global {
   namespace Express {
@@ -13,7 +13,7 @@ function app(...middlewares: any[]) {
   for (const middleware of middlewares) {
     app.use(middleware);
   }
-  return app.use(rootRouter);
+  return app;
 }
 
 export default app;

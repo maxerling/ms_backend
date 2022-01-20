@@ -1,6 +1,5 @@
 class Activity {
-  id: string;
-  name: string;
+  activityName: string;
   description: string;
-  time: string;
+  time_HHMM: string;
 }

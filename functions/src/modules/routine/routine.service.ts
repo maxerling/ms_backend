@@ -17,7 +17,7 @@ export async function getRoutine(id: string) {
 }
 
 export async function createRoutine(routine: Routine) {
-  return routineRepo.createRoutine(routine);
+  await routineRepo.createRoutine(routine);
 }
 
 export async function deleteRoutine(id: string) {

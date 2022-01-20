@@ -6,8 +6,8 @@ export async function getRoutines(
   next: NextFunction
 ) {
   try {
-    const routines = await routineService.getRoutines();
-    res.send(routines);
+    const resp = await routineService.getRoutines();
+    res.status(200).send(resp);
   } catch (err) {
     next(err);
   }
@@ -20,17 +20,23 @@ export async function getRoutine(
 ) {
   try {
     const { id } = req.params;
-    const routine = await routineService.getRoutine(id as string);
-    res.send(routine);
+    const resp = await routineService.getRoutine(id as string);
+    res.status(200).send(resp);
   } catch (err) {
     next(err);
   }
 }
 
-export function createRoutine(req: Request, res: Response, next: NextFunction) {
+export async function createRoutine(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const routine = req.body as Routine;
-    routineService.createRoutine(routine);
+
+    await routineService.createRoutine(routine);
+    res.status(200).send();
   } catch (err) {
     next(err);
   }

@@ -8,7 +8,10 @@ export async function getRoutine(id: string) {
 }
 
 export async function createRoutine(routine: Routine) {
-  return db.collection("routines").doc().set(routine);
+  const id = db.collection("routines").doc().id;
+  db.collection("routines")
+    .doc(id)
+    .set({ ...routine, id: id });
 }
 
 export async function deleteRoutine(id: string) {

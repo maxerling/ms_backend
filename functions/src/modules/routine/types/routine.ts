@@ -1,5 +1,5 @@
 class Routine {
   id?: string;
-  name: string;
+  routineName: string;
   activites: Activity[];
 }
