@@ -19,11 +19,11 @@ export async function getUser(uid: string) {
   return { id: user.id, ...user.data() };
 }
 
-export async function updateUser(newUserInfo: User) {
-  if (newUserInfo.id === undefined) {
+export async function updateUser(id: string, newUserInfo: User) {
+  if (id === undefined) {
     throw new HttpsError("invalid-argument", "invalid id");
   }
-  const user = await findUser(newUserInfo.id);
+  const user = await findUser(id);
   const updatedUser = { id: user.id, ...user.data(), ...newUserInfo };
   await userRepo.updateUser(updatedUser.id, updatedUser);
   return `user: ${updatedUser.id}, updated`;

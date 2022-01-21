@@ -43,9 +43,10 @@ export async function updateUser(
   res: Response,
   next: NextFunction
 ) {
-  const newRoutine = req.body as User;
+  const { id } = req.params;
+  const updatedUser = req.body as User;
   try {
-    const user = await userService.updateUser(newRoutine);
+    const user = await userService.updateUser(id,updatedUser);
     res.send(user);
   } catch (error) {
     next(error);
