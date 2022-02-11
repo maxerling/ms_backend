@@ -39,7 +39,7 @@ async function findUser(
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
   const user = await userRepo.getUser(uid);
   if (!user.exists) {
-    throw new HttpsError("not-found", "user not found exist");
+    throw new HttpsError("not-found", "user not found");
   }
 
   return user;
